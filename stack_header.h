@@ -4,6 +4,7 @@ class Stack{
 	T* data;
 	int sz;
 public:
+	//Constructors
 	Stack(){
 		data = NULL;
 		sz = 0;
@@ -15,9 +16,12 @@ public:
 		}
 		sz = n;
 	}
+	//Destructor
 	~Stack(){
     	delete[] data;
 	}
+	
+	//Subscript operator
 	T operator[](T i){
 		if(i>sz){
 			cout << "Index out of bounds: returning ";
@@ -26,6 +30,7 @@ public:
 		return data[i];
 
 	}
+	//Overloaded Left Shift for visualization
 	friend ostream &operator<<( ostream &output, Stack<T> &s) { 
          for(int i = s.size()-1; i >=0; --i){
          	cout << "[ ";
@@ -35,12 +40,12 @@ public:
          }
          return output;            
       }
-	void push(T item);
-	void pop();
-	T top();
-	T bottom();
-	void reverse();
-	int size();
+	void push(T item); //Push Item
+	void pop();	   //Pop Item
+	T top();	   //Top element
+	T bottom();	   //Bottom element
+	void reverse();    //Reverse the Stack
+	int size();        //Size of the Stack
 
 };
 
