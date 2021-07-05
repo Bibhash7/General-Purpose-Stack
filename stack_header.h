@@ -106,7 +106,8 @@ T Stack<T>::top(){
 	//cout << sz;
 	if(sz <= 0){
 		cout << "Stack is Empty: returning ";
-		return NULL;
+		T v;
+		return v;
 	}
 	return data[sz-1];
 	
@@ -117,7 +118,8 @@ template <class T>
 T Stack<T>::bottom(){
 	if(sz <= 0){
 		cout << "Stack is Empty: returning ";
-		return NULL;
+		T v;
+		return v;
 	}
 	return data[0];
 	
