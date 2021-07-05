@@ -1,5 +1,5 @@
 # General-Purpose-Stack
-A general purpose stack similer to STL c++ stack with two new functionality:
+This library supports all data types & operations of Stack (like C++ STL Stack) with few extra functionalities:
 1. bottom(): Returns the bottom element
 2. reverse(): Reverse the entire stack
-3. Overloaded left shift operator for display the stack in stack form.
+3. Overloaded left shift operator (<<) to display the stack in stack form.
