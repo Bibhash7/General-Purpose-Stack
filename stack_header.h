@@ -3,6 +3,19 @@ template <class T>
 class Stack{
 	T* data;
 	int sz;
+private:
+	T operator[](T i){
+		if(i>sz){
+			cout << "Index out of bounds: returning ";
+			return NULL;
+		}
+		if(i < 0){
+			cout << "Enter Index >= 0: returning ";
+			return NULL;
+		}
+		return data[i];
+
+	}
 public:
 	//Constructors
 	Stack(){
@@ -21,15 +34,6 @@ public:
     	delete[] data;
 	}
 	
-	//Subscript operator
-	T operator[](T i){
-		if(i>sz){
-			cout << "Index out of bounds: returning ";
-			return NULL;
-		}
-		return data[i];
-
-	}
 	//Overloaded Left Shift for visualization
 	friend ostream &operator<<( ostream &output, Stack<T> &s) { 
          for(int i = s.size()-1; i >=0; --i){
@@ -46,6 +50,7 @@ public:
 	T bottom();	   //Bottom element
 	void reverse();    //Reverse the Stack
 	int size();        //Size of the Stack
+	bool empty();	   //Checks if the Stack is Empty or not
 
 };
 
@@ -117,6 +122,11 @@ T Stack<T>::bottom(){
 	return data[0];
 	
 
+}
+
+template <class T>
+bool Stack<T>::empty(){
+	return (sz<=0);
 }
 
 template<class T> 
