@@ -57,7 +57,12 @@ public:
 template<class T>
 void Stack<T>::push(T item){
 	if(sz>=capacity){
-		capacity = capacity*3/2+1;
+		if(capacity == 0){
+			capacity = 1;
+		}
+		else{
+			capacity = capacity*2;
+		}
 		T *tmp = new T[capacity];
 		for(int i = 0; i < sz; ++i){
 			tmp[i] = data[i];
