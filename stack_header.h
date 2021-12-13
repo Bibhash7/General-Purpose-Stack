@@ -3,6 +3,7 @@ template <class T>
 class Stack{
 	T* data;
 	int sz;
+	int capacity;
 private:
 	T operator[](T i){
 		if(i>sz){
@@ -17,10 +18,10 @@ private:
 
 	}
 public:
-	//Constructors
 	Stack(){
 		data = NULL;
 		sz = 0;
+		capacity = 0;
 	}
 	Stack(T a[], int n){
 		data = new T[n];
@@ -28,13 +29,11 @@ public:
 			data[i] = a[i];
 		}
 		sz = n;
+		capacity = n;
 	}
-	//Destructor
 	~Stack(){
     	delete[] data;
 	}
-	
-	//Overloaded Left Shift for visualization
 	friend ostream &operator<<( ostream &output, Stack<T> &s) { 
          for(int i = s.size()-1; i >=0; --i){
          	cout << "[ ";
@@ -44,29 +43,36 @@ public:
          }
          return output;            
       }
-	void push(T item); //Push Item
-	void pop();	   //Pop Item
-	T top();	   //Top element
-	T bottom();	   //Bottom element
-	void reverse();    //Reverse the Stack
-	int size();        //Size of the Stack
-	bool empty();	   //Checks if the Stack is Empty or not
+	void push(T item);
+	void pop();
+	T top();
+	T bottom();
+	void reverse();
+	bool empty();
+	int size();
+	int Capacity();
 
 };
 
 template<class T>
 void Stack<T>::push(T item){
-	T *tmp = new T[sz+1];
-	for(int i = 0; i < sz; ++i){
-		tmp[i] = data[i];
+	if(sz>=capacity){
+		capacity = capacity*3/2+1;
+		T *tmp = new T[capacity];
+		for(int i = 0; i < sz; ++i){
+			tmp[i] = data[i];
+		}
+		tmp[sz] = item;
+		if(data != NULL){
+			delete[] data;
+		}
+		data = tmp;
+		sz++;
 	}
-	tmp[sz] = item;
-	if(data != NULL){
-		delete[] data;
+	else{
+		data[sz]=item;
+		sz++;
 	}
-
-	data = tmp;
-	sz++;
 
 }
 
@@ -126,12 +132,17 @@ T Stack<T>::bottom(){
 
 }
 
-template <class T>
-bool Stack<T>::empty(){
-	return (sz<=0);
-}
-
 template<class T> 
 int Stack<T>:: size(){
 	return sz;
+}
+
+template<class T> 
+int Stack<T>:: Capacity(){
+	return capacity;
+}
+
+template <class T>
+bool Stack<T>::empty(){
+	return (sz<=0);
 }
